@@ -84,29 +84,89 @@ magic
 ```
 ## Making Inverter Schematic on Xschem
 
-
+#### Making a New Schematic
 <img width="960" alt="2022-10-13 (20)" src="https://user-images.githubusercontent.com/39450902/195823970-736e9157-0c13-4aa3-99ac-2b285a2978d4.png">
+
+#### Press Insert key to open the insert symbol dialog box
 <img width="960" alt="2022-10-13 (21)" src="https://user-images.githubusercontent.com/39450902/195823967-0eeb2b0c-efe9-4f8b-a172-974a3863b3e9.png">
-<img width="960" alt="2022-10-13 (22)" src="https://user-images.githubusercontent.com/39450902/195823963-fc015fe3-fa6c-44e7-815f-a46bc11f586d.png">
-<img width="960" alt="2022-10-13 (38)" src="https://user-images.githubusercontent.com/39450902/195823950-34e7b1d3-563a-4231-a265-77eb2bf54d57.png">
+
+#### Insert the pfet3 , nfet, ipin, iopins, opin and join them with wire(W key)
+
+<img width="960" alt="2022-10-13 (33)" src="https://user-images.githubusercontent.com/39450902/195829396-c069b640-5cdf-4b08-b123-9bdd99593806.png">
+
+
+
 <img width="960" alt="2022-10-13 (26)" src="https://user-images.githubusercontent.com/39450902/195823961-335de907-b283-4490-81ef-6c988091ec26.png">
+
+#### Also change the W/L and number of fingers for the pfet and nfet by right clicking on the symbol
+
 <img width="960" alt="2022-10-13 (37)" src="https://user-images.githubusercontent.com/39450902/195823951-4bebe4bc-fc0c-4bf7-aec2-b7c81704ceea.png">
-<img width="960" alt="2022-10-13 (49)" src="https://user-images.githubusercontent.com/39450902/195823945-6ad9454f-3673-45bd-91c4-7db918ec2474.png">
+
+##### Now go to symbol>make symbol from new schematic
+##### then go to File>New Schematic
+<img width="960" alt="2022-10-13 (38)" src="https://user-images.githubusercontent.com/39450902/195823950-34e7b1d3-563a-4231-a265-77eb2bf54d57.png">
+
+#### Create New Schematic by adding inverter symbol, voltage sources, opins, GND and connect them with wires.
+#### Add the voltage value for Vdd, input pulse, code for transient analysis and add the lib
+
 <img width="960" alt="2022-10-13 (48)" src="https://user-images.githubusercontent.com/39450902/195823949-d7f8274f-fcb0-421c-a5fb-5c4ced7a3faa.png">
 
+```".lib /usr/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt"```
+
+```".control tran 1n 1u plot V(in) V(out) .endc"```
+
+#### Generate netlist, Save the Schematic as inverter_tb, and simulate! 
+<img width="960" alt="2022-10-13 (49)" src="https://user-images.githubusercontent.com/39450902/195823945-6ad9454f-3673-45bd-91c4-7db918ec2474.png">
+
+The result came out as expected! >> Now lets go to making the layout for inverter
+
+## Importing Schematic to layout
+
+```
+cd ../mag
+magic -d XR
+```
+then go File >> import SPICE >> inverter.spice
+
+<img width="960" alt="2022-10-13 (55)" src="https://user-images.githubusercontent.com/39450902/195836652-5ae24e94-f7fa-4e91-bc7b-42f34f7c7846.png">
+<img width="960" alt="2022-10-13 (56)" src="https://user-images.githubusercontent.com/39450902/195836687-342f2fce-fb77-442c-a2a7-f5e2286ab07a.png">
+
+### Change the top, bottom guard rings; Source, drain coverage
+ 
+For pfet select top guard ring via coverage and type 100. source via coverage =+40 drain via coverage = -40
+
+and for nfet bottom guard ring via coverage = 100 source via covergae = +40 drain via coverage = -40
+
+<img width="960" alt="2022-10-13 (65)" src="https://user-images.githubusercontent.com/39450902/195837280-25e4bcc9-0724-47e1-abfb-5fe3857d6289.png">
+<img width="960" alt="2022-10-13 (63)" src="https://user-images.githubusercontent.com/39450902/195836735-4f22fb62-9271-4572-be8c-f983df9bf84f.png">
+
+### Now complete the layout
+
+![Screenshot (3)](https://user-images.githubusercontent.com/39450902/195836764-8a259cae-3f34-43e2-a475-634b4b61eb44.png)
+
+#### Now click Save >> Autowrite
+In Command window type following commands extraction, generate a spice netlist and then quit
+
+```
+extract do local
+extract all
+ext2spice lvs
+ext2spice
+quit
+```
 
 
+![Screenshot (4)](https://user-images.githubusercontent.com/39450902/195840608-2caeead7-6bdf-4a59-8ed7-0966fa7e564d.png)
 
+### Now for LVS..
 
+```
+cd ../netgen
+netgen -batch lvs "../mag/inverter.spice inverter" "../xschem/inverter.spice inverter"
+```
 
+![Screenshot (5)](https://user-images.githubusercontent.com/39450902/195841820-707249c5-f771-46b1-bf1f-9fad3804a0d1.png)
 
+#### Due to some error my netlist didnt match...working on it(will update here once done)
 
-
-
-
-
-
-
-
-
-
+![Screenshot (6)](https://user-images.githubusercontent.com/39450902/195842625-e5255084-1494-4c82-b90e-e66e90896c58.png)
