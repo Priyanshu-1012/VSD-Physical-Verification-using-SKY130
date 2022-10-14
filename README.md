@@ -170,3 +170,5 @@ netgen -batch lvs "../mag/inverter.spice inverter" "../xschem/inverter.spice inv
 #### Due to some error my netlist didnt match...working on it(will update here once done)
 
 ![Screenshot (6)](https://user-images.githubusercontent.com/39450902/195842625-e5255084-1494-4c82-b90e-e66e90896c58.png)
+
+#
