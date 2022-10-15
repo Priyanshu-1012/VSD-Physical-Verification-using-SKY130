@@ -351,6 +351,7 @@ port 1 use
 
 ## Lab DAY-3
 
+#### Exercise-1
 
 ![Screenshot (35)](https://user-images.githubusercontent.com/39450902/196000889-4ac388ed-0ee2-40d2-825a-5346000b293c.png)
 ![Screenshot (36)](https://user-images.githubusercontent.com/39450902/196000893-9f5f42bc-ed90-44f2-8bd5-9b7f0e66a625.png)
@@ -369,6 +370,9 @@ port 1 use
 ![Screenshot (49)](https://user-images.githubusercontent.com/39450902/196000926-f1c24627-039d-4a7c-97c4-8e3639f3dee9.png)
 ![Screenshot (51)](https://user-images.githubusercontent.com/39450902/196000929-ece0a861-5b2f-4935-ac94-bcbd67208ec5.png)
 ![Screenshot (52)](https://user-images.githubusercontent.com/39450902/196000932-daa02594-6bdf-4610-8445-b6a8fdc93575.png)
+
+#### Exercise-2
+
 ![Screenshot (53)](https://user-images.githubusercontent.com/39450902/196000934-227594a6-9898-4d21-924d-0fe94f82d677.png)
 ![Screenshot (54)](https://user-images.githubusercontent.com/39450902/196000935-d8444e33-7c02-4cf3-bf7e-d639339b97b1.png)
 ![Screenshot (59)](https://user-images.githubusercontent.com/39450902/196000943-08b62a95-37ed-4cb1-80ea-a85ac5876ee2.png)
