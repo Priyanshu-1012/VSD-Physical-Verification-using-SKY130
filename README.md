@@ -388,36 +388,104 @@ Exercise 1c...check the error
 Resolve this by increasing the seperation to by 0.4um either manually or by commands...your call
 
 ![Screenshot (47)](https://user-images.githubusercontent.com/39450902/196000921-bc0f38f5-9355-4ab7-b455-8e1052244db9.png)
-![Screenshot (49)](https://user-images.githubusercontent.com/39450902/196000926-f1c24627-039d-4a7c-97c4-8e3639f3dee9.png)
 
 Another width rule example(Notch rule)....resolve this my selecting half part('A') and stretching it(shift+num key)...increasing the width
 Another way to do it is with ```stretch``` command..... ```stretch <direction> <measure>```
 
-![Screenshot (51)](https://user-images.githubusercontent.com/39450902/196000929-ece0a861-5b2f-4935-ac94-bcbd67208ec5.png)
-![Screenshot (52)](https://user-images.githubusercontent.com/39450902/196000932-daa02594-6bdf-4610-8445-b6a8fdc93575.png)
+
+![Screenshot (49)](https://user-images.githubusercontent.com/39450902/196000926-f1c24627-039d-4a7c-97c4-8e3639f3dee9.png)
+
 
 #### Exercise-2
 
+2a. Via size error. Can be solved by simply stretching the via both horiz and vert.
+
+![Screenshot (195)](https://user-images.githubusercontent.com/39450902/196018515-82d861d5-d417-4799-b117-54637b866e5f.png)
 ![Screenshot (53)](https://user-images.githubusercontent.com/39450902/196000934-227594a6-9898-4d21-924d-0fe94f82d677.png)
+
+2b.  We got a large via with an array of contact cuts. To see the contact cuts >> run ```cif see xxx``` to check the cif layer names.
+To see MCON(li for metal1), by using ```cif see MCON```
+
 ![Screenshot (54)](https://user-images.githubusercontent.com/39450902/196000935-d8444e33-7c02-4cf3-bf7e-d639339b97b1.png)
+
+Use ```feedback why``` to get info about cif layer, and ```feedback clear``` to stop viewing the contact cuts.
+
+
+2c. We got an overlap error. Fix by selecting the layer then use the ```box grow <direction> <measure>``` command as shown 
+{'c' -> centre}.Then paint in a layer of metal1 to fix the overlap error.
+
 ![Screenshot (59)](https://user-images.githubusercontent.com/39450902/196000943-08b62a95-37ed-4cb1-80ea-a85ac5876ee2.png)
+
+Now fix the size error by growing the box in e and w direction and paint it with m1
+
 ![Screenshot (60)](https://user-images.githubusercontent.com/39450902/196000947-385bcef8-a208-4481-baec-0802725cda6e.png)
 ![Screenshot (61)](https://user-images.githubusercontent.com/39450902/196000950-d8dcb47a-6c85-44ac-87e1-91153782aeb3.png)
+
+2d. Generate via automatically >> use the wiring tool (spacebar). By SHIFT+ left click >> we can move up a metal layer till metal5. Similarly, we can move down layers with the SHIFT+right click until the metal interconnect. To see vias use...
+
+```
+Cif see MCON
+Cif see VIA1
+Cif see VIA2
+Cif see VIA3
+Cif see VIA4
+```
 ![Screenshot (62)](https://user-images.githubusercontent.com/39450902/196000952-ec3eaab5-69b0-4a54-85fa-4141f8247eea.png)
+
+#### Exercise-3
+
+3a.Min area rule... simply stretch to fix it
+
 ![Screenshot (63)](https://user-images.githubusercontent.com/39450902/196000953-e19558a8-02b8-42f3-9a7f-c0f26456bc40.png)
 ![Screenshot (64)](https://user-images.githubusercontent.com/39450902/196000957-e1b7ec14-c855-4c11-ba7c-8e3c540fc679.png)
 ![Screenshot (65)](https://user-images.githubusercontent.com/39450902/196000959-2e4b808a-22cb-4fd8-a045-fc80cc6f2d01.png)
-![Screenshot (66)](https://user-images.githubusercontent.com/39450902/196000960-5d6a1cba-9e21-4d73-8a1c-6d60c30e4c7c.png)
+
+
+3b. Min. hole area rule...To see this error >> run Magic in the full DRC mode(menu button DRC >> DRC complete). Then run a DRC report.
+
 ![Screenshot (67)](https://user-images.githubusercontent.com/39450902/196000963-d9c8086d-930f-4dfc-97c0-1b0f602b1106.png)
+
+Fix this by manually erasing sections of metal till the hole is big enough to pass DRC.
+
 ![Screenshot (68)](https://user-images.githubusercontent.com/39450902/196000966-b1810866-a413-4542-8b00-7bf18b6815fc.png)
+
+
+#### Exercise-4
+
+4a. Its a well error(the wells don't have taps). N-well shows an error  coz its floating(the P-well doesn't since p-wells aren't actually considered... unless they're in deep n-wells(instead treated as psub).
+
 ![Screenshot (69)](https://user-images.githubusercontent.com/39450902/196000967-a5802ecf-e49a-4d0b-8571-95d4c22e48b3.png)
+
+fix this by adding n-type material(nsubstratendiff) into the n-well. Then connect a layer of local interconnect to tap(nsubstratencontact). 
+
 ![Screenshot (70)](https://user-images.githubusercontent.com/39450902/196000971-59f49569-acd9-4fea-9fa5-047550d68b51.png)
+
+Leads to new errors..solve these overlap and surround errors by stretching, adding li.
+
 ![Screenshot (71)](https://user-images.githubusercontent.com/39450902/196000972-428ca802-8a55-4958-9fec-793174be0d87.png)
+
+
+4b. *The p well has to be connected to a contact if it has a tap*. Add psubstratepcontact, some li, and adjust the areas of the layers, we get a DRC correct layout.
+
+![Screenshot (196)](https://user-images.githubusercontent.com/39450902/196019876-79bdfc5e-39d5-4ca4-94db-344d12d102d0.png)
 ![Screenshot (72)](https://user-images.githubusercontent.com/39450902/196000974-887b82af-280d-4dcc-902b-51ce7a961980.png)
+
+4c. Error in deep n-well 
+
 ![Screenshot (73)](https://user-images.githubusercontent.com/39450902/196000978-bc97e6ba-0c5a-4455-bdca-f114f21b07b1.png)
-![Screenshot (74)](https://user-images.githubusercontent.com/39450902/196000981-cc883228-f01b-49e5-9729-08d23d3ba1a8.png)
+
+Grow the deep n-well >> move it away from the n-well(4b) {its interacting with it}. Add an n-well overlap around the deep n-well(wire tool) >> add in a tap layer with an interconnect. 
+
 ![Screenshot (75)](https://user-images.githubusercontent.com/39450902/196000985-894c6544-eb4d-4d88-a12d-7cf55e067581.png)
+![Screenshot (76)](https://user-images.githubusercontent.com/39450902/196020249-fbe4acc9-4757-49e8-8f6e-b2c56261ef5e.png)
+
+Also for deep n-wells >> add a full setup with guard rings (Devices 1 >> deep n-well region)
+
 ![Screenshot (76)](https://user-images.githubusercontent.com/39450902/196000987-1d1a588f-d122-403c-bfba-0986f9ac95a3.png)
+
+
+#### Exercise-5
+
 ![Screenshot (77)](https://user-images.githubusercontent.com/39450902/196000989-e246ea3d-2b83-4937-a4fc-a6be26024c36.png)
 ![Screenshot (78)](https://user-images.githubusercontent.com/39450902/196000991-d6c836c4-bd87-4209-81bd-484bfa1aec1f.png)
 ![Screenshot (79)](https://user-images.githubusercontent.com/39450902/196001002-c1f2d15f-bb7a-462b-9204-6a170b30184f.png)
@@ -457,6 +525,7 @@ Another way to do it is with ```stretch``` command..... ```stretch <direction> <
 ![Screenshot (114)](https://user-images.githubusercontent.com/39450902/196001098-d5e0821f-624c-46fb-85c9-92b2bb71289f.png)
 ![Screenshot (115)](https://user-images.githubusercontent.com/39450902/196001101-f0ce763b-491e-4d58-af02-75bbc253596a.png)
 ![Screenshot (116)](https://user-images.githubusercontent.com/39450902/196001105-cbf6c84e-63ae-47ec-a98c-a1e0aecbc5a9.png)
+
 
 
 
