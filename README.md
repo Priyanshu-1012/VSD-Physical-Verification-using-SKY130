@@ -353,21 +353,46 @@ port 1 use
 
 #### Exercise-1
 
+Getting started...
 ![Screenshot (35)](https://user-images.githubusercontent.com/39450902/196000889-4ac388ed-0ee2-40d2-825a-5346000b293c.png)
 ![Screenshot (36)](https://user-images.githubusercontent.com/39450902/196000893-9f5f42bc-ed90-44f2-8bd5-9b7f0e66a625.png)
+
+Select and hit '?' on keyboard to get DRC report
 ![Screenshot (37)](https://user-images.githubusercontent.com/39450902/196000895-cf0b3160-0a5b-4906-bf96-24a3f9149c4e.png)
 ![Screenshot (38)](https://user-images.githubusercontent.com/39450902/196000897-e3a453ed-25d1-41c0-86e8-4c8e48f17367.png)
-![Screenshot (39)](https://user-images.githubusercontent.com/39450902/196000900-930ca23f-9752-4bc7-9179-debb287aabe1.png)
-![Screenshot (40)](https://user-images.githubusercontent.com/39450902/196000905-71248683-17d5-4161-b399-0af8ef66e6e0.png)
+
+Press 'B' to check dimensions of the cursor box. Here the width was 0.06um  but the min width should be 0.14 microns.
+To increase the width of the metal layer, we can either manually set the cursor box to the size required, then paint it using the middle mouse button/hover to the layer and hit 'P' on keyboard. Or we can do it with console commands by typing...
+
+```box width 0.14um```
+
+```paint m2```
+
+
 ![Screenshot (41)](https://user-images.githubusercontent.com/39450902/196000906-04a0090c-51f2-4f49-997d-34c5fc8a3289.png)
 ![Screenshot (42)](https://user-images.githubusercontent.com/39450902/196000907-53188426-d4e4-4a17-8077-ed21a29de86f.png)
+
+Exercise 1b....DRC report
+
 ![Screenshot (43)](https://user-images.githubusercontent.com/39450902/196000910-4d2cbd8a-a142-477b-a782-8eb4c7f7dce6.png)
+
+Its a spacing error...it can be resolved by moving either of the rectangles away.
+Select a rectangles, and move it using 2-4-6-8 num keys (can also be done using the command ```move e 0.14um``` ...it moves the box 0.14um towards east>>)
+
 ![Screenshot (44)](https://user-images.githubusercontent.com/39450902/196000913-a7bf7b45-f7f5-466b-9607-3aafce9d19a5.png)
+
+Exercise 1c...check the error
+
 ![Screenshot (45)](https://user-images.githubusercontent.com/39450902/196000916-0d0dab47-93b2-4e6c-964e-a40e2ca7c3e9.png)
-![Screenshot (46)](https://user-images.githubusercontent.com/39450902/196000917-e832f994-ec70-4ff0-91fd-f8a42b6acbe9.png)
+
+Resolve this by increasing the seperation to by 0.4um either manually or by commands...your call
+
 ![Screenshot (47)](https://user-images.githubusercontent.com/39450902/196000921-bc0f38f5-9355-4ab7-b455-8e1052244db9.png)
-![Screenshot (48)](https://user-images.githubusercontent.com/39450902/196000925-900733ee-9f96-44fd-88e3-2082ee50070a.png)
 ![Screenshot (49)](https://user-images.githubusercontent.com/39450902/196000926-f1c24627-039d-4a7c-97c4-8e3639f3dee9.png)
+
+Another width rule example(Notch rule)....resolve this my selecting half part('A') and stretching it(shift+num key)...increasing the width
+Another way to do it is with ```stretch``` command..... ```stretch <direction> <measure>```
+
 ![Screenshot (51)](https://user-images.githubusercontent.com/39450902/196000929-ece0a861-5b2f-4935-ac94-bcbd67208ec5.png)
 ![Screenshot (52)](https://user-images.githubusercontent.com/39450902/196000932-daa02594-6bdf-4610-8445-b6a8fdc93575.png)
 
